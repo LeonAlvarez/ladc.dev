@@ -1,0 +1,36 @@
+{
+    "url": "https://ladc.dev",
+    "meta": {
+        "favicon": "https://i.imgur.com/PO9Y4fT.jpg",
+        "keyword": "Leon, blog, Fullstack, JavaScript, JS, Node, React, Gatsby, Rust",
+        "description": "León Alvarez Del Canto | Fullstack Developer",
+        "theme_color": "#384f7c"
+    },
+    "name": "Leon",
+    "about": "about",
+    "email": "leon@leon-design.es",
+    "title": "León Fullstack Developer",
+    "License": "MIT",
+    "friends": [
+        {
+            "href": "https://ladc.dev",
+            "title": "León Fullstack Developer"
+        }
+    ],
+    "iconUrl": "https://i.imgur.com/kjt2x52.jpg",
+    "wordings": [
+        "GatsbyJS, ReactJS"
+    ],
+    "navbarList": [
+        {
+            "href": "/guestbook/",
+            "title": "Guest book"
+        },
+        {
+            "href": "/tags/",
+            "title": "Tags"
+        }
+    ],
+    "githubUsername": "LeonAlvarez",
+    "maxPostsInPage": 10
+}
