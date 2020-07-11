@@ -5,6 +5,7 @@ module.exports = {
     title: `León Alvarez Del Canto | Fullstack Developer`,
     description: `León Alvarez Del Canto`,
     author: `LeonAlvarez`,
+    siteUrl: `https://ladc.dev`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -71,8 +72,6 @@ module.exports = {
       options: {
         configFile: path.join(
           __dirname,
-          'src',
-          'utils',
           'robots-txt.config.js'
         ),
       },

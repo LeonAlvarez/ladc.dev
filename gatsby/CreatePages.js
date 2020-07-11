@@ -2,9 +2,9 @@ const path = require('path');
 const createPaginatedPages = require('gatsby-paginate');
 
 module.exports = ({ actions, graphql }) => {
-  const { createPage } = actions;
+  const { createPage, reject } = actions;
 
-  return graphql(`
+  const allMarkdownRemarkRes = await graphql(`
     {
       allMarkdownRemark(
         limit: 1000
@@ -32,66 +32,65 @@ module.exports = ({ actions, graphql }) => {
         }
       }
     }
-  `).then((result) => {
-    if (result.errors) {
-      return Promise.reject(result.errors);
+  `)
+
+  if (allMarkdownRemarkRes.errors) {
+    reject(allMarkdownRemarkRes.errors);
+  }
+
+  const { edges = [] } = allMarkdownRemarkRes.data.allMarkdownRemark;
+  const tagSet = new Set();
+
+  createPaginatedPages({
+    edges,
+    createPage,
+    pageTemplate: 'src/templates/index.js',
+    context: {
+      totalCount: edges.length,
+    },
+    pathPrefix: 'pages',
+    buildPath: (index, pathPrefix) => {
+      if (index > 1) {
+        return `${pathPrefix}/${index}`;
+      }
+      return '/';
+    },
+  });
+
+  edges.forEach(({ node }, index) => {
+    const { id, frontmatter, fields } = node;
+    const { slug, tags, templateKey } = frontmatter;
+
+    if (tags) {
+      tags.forEach(item => tagSet.add(item));
     }
 
-    const { edges = [] } = result.data.allMarkdownRemark;
+    let $path = fields.slug;
+    if (slug) {
+      $path = slug;
+    }
 
-    const tagSet = new Set();
+    const component = templateKey || 'blog-post';
 
-    createPaginatedPages({
-      edges,
-      createPage,
-      pageTemplate: 'src/templates/index.js',
+    createPage({
+      path: $path,
+      tags,
+      component: path.resolve(`src/templates/${String(component)}.js`),
+      // additional data can be passed via context
       context: {
-        totalCount: edges.length,
-      },
-      pathPrefix: 'pages',
-      buildPath: (index, pathPrefix) => {
-        if (index > 1) {
-          return `${pathPrefix}/${index}`;
-        }
-        return '/';
+        id,
+        index,
       },
     });
+  });
 
-    edges.forEach(({ node }, index) => {
-      const { id, frontmatter, fields } = node;
-      const { slug, tags, templateKey } = frontmatter;
-
-      if (tags) {
-        tags.forEach(item => tagSet.add(item));
-      }
-
-      let $path = fields.slug;
-      if (slug) {
-        $path = slug;
-      }
-
-      const component = templateKey || 'blog-post';
-
-      createPage({
-        path: $path,
-        tags,
-        component: path.resolve(`src/templates/${String(component)}.js`),
-        // additional data can be passed via context
-        context: {
-          id,
-          index,
-        },
-      });
-    });
-
-    return tagSet.forEach((tag) => {
-      createPage({
-        path: `/tag/${tag}`,
-        component: path.resolve('src/templates/tag.js'),
-        context: {
-          tag,
-        },
-      });
+  return tagSet.forEach((tag) => {
+    createPage({
+      path: `/tag/${tag}`,
+      component: path.resolve('src/templates/tag.js'),
+      context: {
+        tag,
+      },
     });
   });
 };
