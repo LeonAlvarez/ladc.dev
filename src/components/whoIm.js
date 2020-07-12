@@ -1,6 +1,5 @@
 import React from "react"
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from "gatsby"
 import { Github, Twitter, Telegram } from '@styled-icons/fa-brands'
 import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
@@ -36,9 +35,6 @@ const WhoImTerminal = styled(Terminal)`
     max-width: calc(100vw - 5rem);
     top: -1rem;
     left: -2rem;
-    ${TerminalBody} {
-      opacity: 1;
-    }
     ${TerminalSocial} {
       right: -3rem;
     }
@@ -58,19 +54,15 @@ const TerminalSocial = styled.div`
 const ImBgtitle = styled.h2`
   color: ${props => props.bgColor || props.theme.bgColor};
   position: absolute;
-  top: 2rem;
+  top: 6rem;
   right: 0;
   z-index: 5;
   font-size: 10rem;
   opacity: .1;
   ${props => media(props).greaterThan("md")`
     font-size: 20rem;
-    flex-direction: row;
+    top: 2rem;
   `};
-`;
-
-const WhoImTextWrapper = styled.div`
-
 `;
 
 const WhoImTitle = styled(Heading)`
@@ -78,34 +70,17 @@ const WhoImTitle = styled(Heading)`
   color: red;
 `;
 
-const WhoIm = () => {
-  const data = useStaticQuery(graphql`
-    query SocialQuery {
-      site {
-        siteMetadata {
-          author,
-          description
-          social {
-            Github
-            Twitter
-            Telegram
-            Email
-          }
-        }
-      }
-    }
-  `)
-  const { social } = data.site.siteMetadata
+const WhoIm = ({ social }) => {
   return (
     <WhoImWrapper>
       <WhoImContainer>
-        <WhoImTextWrapper>
+        <div>
           <Heading level={4}>Now you may be wondering..</Heading>
           <WhoImTitle level={3} fontSize="4rem">Who Are You?</WhoImTitle>
           <Button primary rounded>
             About me
         </Button>
-        </WhoImTextWrapper>
+        </div>
         <WhoImTerminal>
           <TerminalSocial>
             <a href={`https://github.com/${social.Github}`} target="_blank">

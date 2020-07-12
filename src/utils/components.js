@@ -5,6 +5,9 @@ import media from "../utils/mediaQueries"
 
 export const Container = styled.div`
     width: 100%;
+    ${props => media(props).lessThan("sm")`
+        padding: 1rem;
+    `}
     ${props => media(props).greaterThan("sm")`
         max-width: 640px;
     `}

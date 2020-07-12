@@ -1,9 +1,7 @@
+import { Heading } from './../utils/components';
 import React from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components';
-
-import { Container } from '../utils/components';
-
 const HeroWrapper = styled.section`
   display: flex;
   min-height: 60vh;
@@ -15,17 +13,9 @@ const HeroWrapper = styled.section`
   align-items: center;
 `;
 
-const HeroContainer = styled(Container)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Hero = ({ className }) => (
+const Hero = ({ className, children }) => (
   <HeroWrapper className={className}>
-    <HeroContainer>
-      TODO
-    </HeroContainer>
+    {children}
   </HeroWrapper>
 )
 
