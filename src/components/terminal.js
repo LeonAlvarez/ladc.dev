@@ -1,24 +1,25 @@
-import { clearError } from './../../.cache/error-overlay-handler';
 import React, { useRef, useState, useEffect } from "react"
 import styled from 'styled-components';
 import useFullscreen from "@am-hooks/use-full-screen";
 
 const replaceCaret = (el) => {
-  // Place the caret at the end of the element
-  const target = document.createTextNode('');
-  el.appendChild(target);
-  // do not move caret if element was not focused
-  const isTargetFocused = document.activeElement === el;
-  if (target !== null && target.nodeValue !== null && isTargetFocused) {
-    var sel = window.getSelection();
-    if (sel !== null) {
-      var range = document.createRange();
-      range.setStart(target, target.nodeValue.length);
-      range.collapse(true);
-      sel.removeAllRanges();
-      sel.addRange(range);
+  if (window) {
+    // Place the caret at the end of the element
+    const target = document.createTextNode('');
+    el.appendChild(target);
+    // do not move caret if element was not focused
+    const isTargetFocused = document.activeElement === el;
+    if (target !== null && target.nodeValue !== null && isTargetFocused) {
+      var sel = window.getSelection();
+      if (sel !== null) {
+        var range = document.createRange();
+        range.setStart(target, target.nodeValue.length);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+      if (el instanceof HTMLElement) el.focus();
     }
-    if (el instanceof HTMLElement) el.focus();
   }
 }
 
@@ -118,7 +119,7 @@ const TerminalLine = ({ innerRef, executeCommand }) => {
       el.innerHTML = html;
     }
     setLastHtml(html);
-    replaceCaret(el);
+    //if (window) replaceCaret(el);
   });
 
   return (
