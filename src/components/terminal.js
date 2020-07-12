@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from "react"
 import styled from 'styled-components';
 import useFullscreen from "@am-hooks/use-full-screen";
 
+import { version } from '../../package.json';
+
+
 const replaceCaret = (el) => {
   // Place the caret at the end of the element
   const target = document.createTextNode('');
@@ -40,6 +43,7 @@ const TerminalHeader = styled.div`
   border-radius: .5rem .5rem 0 0;
   padding-left: .8rem;
 `;
+
 const iconsColors = {
   green: '#48bb78',
   yellow: '#fbd38d',
@@ -98,17 +102,8 @@ const TerminalInput = styled.span.attrs(({ contentEditable }) => ({
 `;
 
 const TerminalLine = ({ innerRef, executeCommand }) => {
-  const [html, setHtml] = useState(`ll`);
+  const [html, setHtml] = useState(`help`);
   const [lastHtml, setLastHtml] = useState();
-  const handleChange = evt => {
-    console.log(event)
-    if (event.keyCode == 13) {
-      executeCommand(evt.target.innerText)
-      setHtml('');
-      return;
-    }
-    setHtml(evt.target.innerHTML);
-  };
 
   useEffect(() => {
     const el = innerRef.current;
@@ -120,10 +115,21 @@ const TerminalLine = ({ innerRef, executeCommand }) => {
     replaceCaret(el);
   });
 
+  const handleChange = evt => {
+    console.log(event)
+    if (event.keyCode == 13) {
+      executeCommand(evt.target.innerText)
+      setHtml('');
+      return;
+    }
+    setHtml(evt.target.innerHTML);
+  };
+
   return (
     <div>
-      root: $&nbsp;
-      < span />
+      <span>
+        root: $&nbsp;
+      </span>
       <TerminalInput
         ref={innerRef}
         onKeyUp={handleChange}
@@ -134,14 +140,31 @@ const TerminalLine = ({ innerRef, executeCommand }) => {
   )
 }
 
+const Command = ({ command, className }) => {
+  const { command: commandName, res, at } = command;
+  return (
+    <div className={className}>
+      <div>
+        <span>
+          root: $&nbsp;
+        </span>
+        {commandName}
+      </div>
+      <pre>{res}</pre>
+    </div>
+  )
+}
 const TerminalHistory = ({ className, history }) => {
   return (
-    <div>
-      {history.map((command, i) => {
-        return (
-          <div key={i}>{command.text}</div>
-        )
-      })}
+    <div className={className}>
+      {
+        history.map(command => (
+          <Command
+            command={command}
+            key={`${command.command}-${command.at.getTime()}`}
+          />
+        ))
+      }
     </div>
   )
 };
@@ -152,13 +175,27 @@ const Terminal = ({ className, children }) => {
   const { element, triggerFull, exitFull } = useFullscreen();
 
   const clear = () => setHistory([]);
-  const pushCommand = ({ command }) => setHistory([...history, { text: command }])
+  const pushCommand = (command) => {
+    console.log({ ...command, at: new Date })
+    setHistory([...history, { ...command, at: new Date }])
+  }
 
   const COMMANDS = {
     cl: clear,
     clear,
+    v: ({ command }) => {
+      pushCommand({ command, res: version });
+    },
+    help: ({ command }) => {
+      const res = `
+cl, clear         clear terminal history
+h, help           display list of avalible commands
+v, version        print project version
+      `
+      pushCommand({ command, res });
+    },
     default: ({ command }) => {
-      pushCommand({ command })
+      return pushCommand({ command })
     }
   }
 
@@ -168,14 +205,21 @@ const Terminal = ({ className, children }) => {
     return (COMMANDS[command] || COMMANDS.default)({ command, args })
   }
 
+  const focusTerminal = evt => {
+    evt.stopPropagation();
+    evt.nativeEvent.stopImmediatePropagation();
+    replaceCaret(input.current);
+    input.current.focus();
+  }
+
   return (
-    <TerminalWrapper onClick={_ => input.current.focus()} ref={element} className={className} >
+    <TerminalWrapper onClick={focusTerminal} ref={element} className={className} >
       <TerminalHeader>
         <TerminalHeaderIcon onClick={exitFull} color="red" />
         <TerminalHeaderIcon onClick={exitFull} color="yellow" />
         <TerminalHeaderIcon onClick={triggerFull} color="green" />
       </TerminalHeader>
-      <TerminalBody>
+      <TerminalBody onClick={focusTerminal} >
         <TerminalHistory history={history} />
         <TerminalLine innerRef={input} executeCommand={executeCommand} />
       </TerminalBody>

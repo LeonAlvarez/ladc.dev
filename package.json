@@ -2,7 +2,7 @@
   "name": "ladc.dev",
   "private": true,
   "description": "My personal site with Gatsby",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "LeonAlvarez <leon@leon-design.es>",
   "dependencies": {
     "@am-hooks/use-full-screen": "^1.0.0",
