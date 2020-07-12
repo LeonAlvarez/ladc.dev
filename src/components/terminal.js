@@ -100,7 +100,7 @@ const TerminalInput = styled.span.attrs(({ contentEditable }) => ({
   caret-color: transparent;
 `;
 
-export const COMMANDS = ({ clear = () => { } } = {}) => ({
+export const COMMANDS = ({ clear } = {}) => ({
   cl: clear,
   clear,
   v: ({ command, args }) => ({ command, args, res: version }),
@@ -155,7 +155,6 @@ const TerminalLine = ({ innerRef, executeCommand, initalState }) => {
 
 const Command = ({ command, className }) => {
   const { command: commandName, res, at, args } = command;
-  console.log(args)
   return (
     <div className={className}>
       <div>
@@ -188,15 +187,17 @@ const Terminal = ({ className, children, initialHistory, initalState }) => {
   const input = useRef(null);
   const { element, triggerFull, exitFull } = useFullscreen();
 
-  const clear = () => setHistory([]);
   const pushCommand = (command) => {
     setHistory([...history, { ...command, at: new Date }])
   }
 
   const executeCommand = (text) => {
     const [command, ...args] = text.trim().split(" ")
+    const clear = () => setHistory([])
     const result = (COMMANDS({ clear })[command] || COMMANDS({ clear }).default)({ command, args })
-    pushCommand(result)
+    if (result) {
+      pushCommand(result)
+    }
   }
 
   const focusTerminal = evt => {
