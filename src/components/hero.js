@@ -21,8 +21,8 @@ const HeroContainer = styled(Container)`
   align-items: center;
 `;
 
-const Hero = () => (
-  <HeroWrapper>
+const Hero = ({ className }) => (
+  <HeroWrapper className={className}>
     <HeroContainer>
       TODO
     </HeroContainer>

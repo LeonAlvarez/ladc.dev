@@ -24,8 +24,9 @@ const StyledHeading = styled.div`
     margin: 0;
 `;
 
-export const Heading = ({ level = 1, children, color, fontSize, fontWeight }) =>
+export const Heading = ({ level = 1, children, color, fontSize, fontWeight, className }) =>
     <StyledHeading
+        className={className}
         as={`h${level}`}
         level={level}
         color={color}

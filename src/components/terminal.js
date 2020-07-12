@@ -64,8 +64,8 @@ const TerminalCursor = styled.span`
   }
 `;
 
-const Terminal = () => (
-  <TerminalWrapper>
+const Terminal = ({ className }) => (
+  <TerminalWrapper className={className}>
     <TerminalHeader>
       <TerminalHeaderIcon color="green" />
       <TerminalHeaderIcon color="yellow" />
