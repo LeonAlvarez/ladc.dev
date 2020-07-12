@@ -14,7 +14,7 @@ const WhoImWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 26rem;
+  min-height: 32rem;
   z-index: 10;
   position: relative;
 `;
@@ -30,10 +30,10 @@ const WhoImContainer = styled(Container)`
 `;
 
 const WhoImTerminal = styled(Terminal)`
-  top: -9rem;
+  top: -12rem;
   ${props => media(props).lessThan("md")`
     max-width: calc(100vw - 5rem);
-    top: -8rem;
+    top: -8.25rem;
     left: -2rem;
     ${TerminalSocial} {
       right: -3rem;
@@ -54,14 +54,14 @@ const TerminalSocial = styled.div`
 const ImBgtitle = styled.h2`
   color: ${props => props.bgColor || props.theme.bgColor};
   position: absolute;
-  top: 6rem;
+  top: 8rem;
   right: 0;
   user-select: none;
   font-size: 10rem;
   opacity: .1;
   ${props => media(props).greaterThan("md")`
     font-size: 20rem;
-    top: 8rem;
+    top: 3rem;
   `};
 `;
 

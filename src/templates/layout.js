@@ -20,6 +20,11 @@ const Footer = styled.footer`
   padding: 1rem 2rem;
   text-align: center;
 `
+const LayoutWrapper = styled.div`
+  min-height: 100vh;
+  margin: 0px;
+  transition: all 0.37s ease 0s;
+`
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
@@ -37,16 +42,18 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme.currentTheme}>
-      <Header
-        menuItems={menuItems}
-        headerLogoTitle={data.site.siteMetadata.description}
-        headerLogo={data.site.siteMetadata.author} />
-      <main>{children}</main>
-      <Footer>
-        © {new Date().getFullYear()}, Built with
+      <LayoutWrapper>
+        <Header
+          menuItems={menuItems}
+          headerLogoTitle={data.site.siteMetadata.description}
+          headerLogo={data.site.siteMetadata.author} />
+        <main style={{ overflow: 'hidden' }}>{children}</main>
+        <Footer>
+          © {new Date().getFullYear()}, Built with
           {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </Footer>
+          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        </Footer>
+      </LayoutWrapper>
     </ThemeProvider>
   )
 }
