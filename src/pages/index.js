@@ -35,6 +35,7 @@ const IndexPage = () => {
             Twitter
             Telegram
             Email
+            Linkedin
           }
         }
       }
