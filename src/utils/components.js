@@ -1,20 +1,22 @@
 import React from "react"
 import styled from 'styled-components';
 
+import media from "../utils/mediaQueries"
+
 export const Container = styled.div`
     width: 100%;
-    @media (min-width: 640px) {
+    ${props => media(props).greaterThan("sm")`
         max-width: 640px;
-    }
-    @media (min-width: 768px) {
+    `}
+    ${props => media(props).greaterThan("md")`
         max-width: 768px;
-    }
-    @media (min-width: 1024px) {
+    `}
+    ${props => media(props).greaterThan("lg")`
         max-width: 1024px;
-    }
-    @media (min-width: 1280px) {
+    `}
+    ${props => media(props).greaterThan("xl")`
         max-width: 1280px;
-    }
+    `}
 `;
 
 const StyledHeading = styled.div`
