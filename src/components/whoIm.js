@@ -57,6 +57,7 @@ const ImBgtitle = styled.h2`
   top: 6rem;
   right: 0;
   z-index: 5;
+  user-select: none;
   font-size: 10rem;
   opacity: .1;
   ${props => media(props).greaterThan("md")`
