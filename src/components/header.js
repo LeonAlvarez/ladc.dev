@@ -32,7 +32,9 @@ const MainLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: 200;
   text-decoration: none;
-  padding-left: 1rem;
+  @media (min-width: 768px) {
+    padding-left: 1rem;
+  }
   &:hover {
     -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
   }
@@ -47,8 +49,10 @@ const HeaderLink = styled(Link)`
   font-weight: 200;
   transition: all 0.2s ease-in-out;
   position: relative;
-  margin: 0 .5rem;
   padding: .5rem;
+  @media (min-width: 768px) {
+    margin: 0 .5rem;
+  }
   &:before,
   &:after {
     content: "";
