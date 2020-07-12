@@ -54,6 +54,13 @@ const TerminalSocial = styled.div`
   justify-content: space-around;
 `;
 
+const SocialLink = styled.a`
+  transition: all 0.37s ease 0s;
+  &:hover {
+    transform: translateX(0.5rem);
+  }
+`;
+
 const ImBgtitle = styled.h2`
   color: ${props => props.bgColor || props.theme.bgColor};
   position: absolute;
@@ -91,6 +98,8 @@ const TextWrapper = styled.div`
   `};
 `;
 
+
+
 const WhoIm = ({ social }) => {
   return (
     <WhoImWrapper>
@@ -104,21 +113,21 @@ const WhoIm = ({ social }) => {
         </TextWrapper>
         <WhoImTerminal>
           <TerminalSocial>
-            <a href={`https://github.com/${social.Github}`} target="_blank">
+            <SocialLink href={`https://github.com/${social.Github}`} target="_blank">
               <Github size="32" color="white" title="Github" />
-            </a>
-            <a href={`mailto:${social.Email}?subject=Hi`} target="_blank">
+            </SocialLink>
+            <SocialLink href={`mailto:${social.Email}?subject=Hi`} target="_blank">
               <AlternateEmail size="32" color="#d42c2c" title="Email" />
-            </a>
-            <a href={`https://twitter.com/${social.Twitter}`} target="_blank">
+            </SocialLink>
+            <SocialLink href={`https://twitter.com/${social.Twitter}`} target="_blank">
               <Twitter size="32" color="rgba(29,161,242,1.00)" title="Twitter" />
-            </a>
-            <a href={`https://www.linkedin.com/in/${social.Linkedin}`} target="_blank">
+            </SocialLink>
+            <SocialLink href={`https://www.linkedin.com/in/${social.Linkedin}`} target="_blank">
               <Linkedin size="32" color="#0377b5" title="Linkedin" />
-            </a>
-            <a href={`https://t.me/${social.Telegram}`} target="_blank">
+            </SocialLink>
+            <SocialLink href={`https://t.me/${social.Telegram}`} target="_blank">
               <Telegram size="32" color="#179cde" title="Telegram" />
-            </a>
+            </SocialLink>
           </TerminalSocial>
         </WhoImTerminal>
         <ImBgtitle>LEÓN</ImBgtitle>
