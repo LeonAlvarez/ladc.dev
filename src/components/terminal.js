@@ -105,8 +105,23 @@ const TerminalInput = styled.span.attrs(({ contentEditable }) => ({
   caret-color: transparent;
 `;
 
-const TerminalLine = ({ innerRef, executeCommand }) => {
-  const [html, setHtml] = useState(`help`);
+export const COMMANDS = ({ clear = () => { } } = {}) => ({
+  cl: clear,
+  clear,
+  v: ({ command, args }) => ({ command, args, res: version }),
+  help: ({ command, args }) => {
+    const res = `
+cl, clear         clear terminal history
+h, help           display list of avalible commands
+v, version        print project version
+      `
+    return { command, args, res };
+  },
+  default: ({ command, args }) => ({ command, args })
+})
+
+const TerminalLine = ({ innerRef, executeCommand, initalState }) => {
+  const [html, setHtml] = useState(initalState);
   const [lastHtml, setLastHtml] = useState();
 
   useEffect(() => {
@@ -173,8 +188,8 @@ const TerminalHistory = ({ className, history }) => {
   )
 };
 
-const Terminal = ({ className, children }) => {
-  const [history, setHistory] = useState([]);
+const Terminal = ({ className, children, initialHistory, initalState }) => {
+  const [history, setHistory] = useState(initialHistory);
   const input = useRef(null);
   const { element, triggerFull, exitFull } = useFullscreen();
 
@@ -183,28 +198,10 @@ const Terminal = ({ className, children }) => {
     setHistory([...history, { ...command, at: new Date }])
   }
 
-  const COMMANDS = {
-    cl: clear,
-    clear,
-    v: ({ command, args }) => {
-      pushCommand({ command, args, res: version });
-    },
-    help: ({ command, args }) => {
-      const res = `
-cl, clear         clear terminal history
-h, help           display list of avalible commands
-v, version        print project version
-      `
-      pushCommand({ command, args, res });
-    },
-    default: ({ command, args }) => {
-      return pushCommand({ command, args })
-    }
-  }
-
   const executeCommand = (text) => {
     const [command, ...args] = text.trim().split(" ")
-    return (COMMANDS[command] || COMMANDS.default)({ command, args })
+    const result = (COMMANDS({ clear })[command] || COMMANDS({ clear }).default)({ command, args })
+    pushCommand(result)
   }
 
   const focusTerminal = evt => {
@@ -223,7 +220,7 @@ v, version        print project version
       </TerminalHeader>
       <TerminalBody onClick={focusTerminal} >
         <TerminalHistory history={history} />
-        <TerminalLine innerRef={input} executeCommand={executeCommand} />
+        <TerminalLine innerRef={input} initalState={initalState} executeCommand={executeCommand} />
       </TerminalBody>
       {children}
     </TerminalWrapper >

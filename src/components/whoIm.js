@@ -5,7 +5,7 @@ import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
 
 import media from "../utils/mediaQueries"
-import Terminal from './terminal';
+import Terminal, { COMMANDS } from './terminal';
 
 const WhoImWrapper = styled.section`
   display: flex;
@@ -99,6 +99,9 @@ const TextWrapper = styled.div`
 `;
 
 
+const initialHistory = [
+  { ...COMMANDS().help({ command: 'help' }), at: new Date }
+];
 
 const WhoIm = ({ social }) => {
   return (
@@ -111,7 +114,7 @@ const WhoIm = ({ social }) => {
             About me
           </Button>
         </TextWrapper>
-        <WhoImTerminal>
+        <WhoImTerminal initialHistory={initialHistory} initalState="">
           <TerminalSocial>
             <SocialLink href={`https://github.com/${social.Github}`} target="_blank">
               <Github size="32" color="white" title="Github" />
