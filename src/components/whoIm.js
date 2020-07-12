@@ -16,6 +16,7 @@ const WhoImWrapper = styled.section`
   justify-content: center;
   align-items: center;
   height: 26rem;
+  z-index: 10;
   position: relative;
 `;
 
@@ -30,7 +31,7 @@ const WhoImContainer = styled(Container)`
 `;
 
 const WhoImTerminal = styled(Terminal)`
-  top: -6rem;
+  top: -9rem;
   ${props => media(props).lessThan("md")`
     max-width: calc(100vw - 5rem);
     top: -1rem;
@@ -59,7 +60,7 @@ const ImBgtitle = styled.h2`
   position: absolute;
   top: 2rem;
   right: 0;
-  z-index: 0;
+  z-index: 5;
   font-size: 10rem;
   opacity: .1;
   ${props => media(props).greaterThan("md")`

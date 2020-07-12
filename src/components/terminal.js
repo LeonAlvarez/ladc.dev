@@ -13,9 +13,10 @@ const TerminalWrapper = styled.section`
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 `;
 
-const TerminalHeader = styled.header`
+const TerminalHeader = styled.div`
   background: #e0e8f0;
-  height: 6rem;
+  height: 100%;
+  z-index: 1;
   border-radius: .5rem .5rem 0 0;
   padding-left: .8rem;
 `;
