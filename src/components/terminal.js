@@ -116,7 +116,6 @@ const TerminalLine = ({ innerRef, executeCommand }) => {
   });
 
   const handleChange = evt => {
-    console.log(event)
     if (event.keyCode == 13) {
       executeCommand(evt.target.innerText)
       setHtml('');
@@ -176,7 +175,6 @@ const Terminal = ({ className, children }) => {
 
   const clear = () => setHistory([]);
   const pushCommand = (command) => {
-    console.log({ ...command, at: new Date })
     setHistory([...history, { ...command, at: new Date }])
   }
 
@@ -201,7 +199,6 @@ v, version        print project version
 
   const executeCommand = (text) => {
     const [command, args] = text.trim().split(" ")
-    console.log({ command, args })
     return (COMMANDS[command] || COMMANDS.default)({ command, args })
   }
 

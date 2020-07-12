@@ -1,18 +1,18 @@
 const headings = {
   1: {
-    fontSize: '2rem',
+    fontSize: '5rem',
     fontWeight: 600,
   },
   2: {
-    fontSize: '2rem',
+    fontSize: '4.5rem',
     fontWeight: 600,
   },
   3: {
-    fontSize: '2rem',
+    fontSize: '4rem',
     fontWeight: 600,
   },
   4: {
-    fontSize: '2rem',
+    fontSize: '3rem',
     fontWeight: 600,
   }
 }
@@ -35,6 +35,11 @@ const darkTheme = {
   bgColor: '#05233b',
   lightBgColor: '#f9f9f9',
   header: {
+    bgColor: '#05233b',
+    textColor: '#f9f9f9',
+    accentColor: '#3490dc'
+  },
+  footer: {
     bgColor: '#05233b',
     textColor: '#f9f9f9',
     accentColor: '#3490dc'

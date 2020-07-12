@@ -12,11 +12,14 @@ import WhoIm from "../components/whoIm"
 
 const HeroHeading = styled(Heading)`
   color: ${props => props.textColor || props.theme.lightTextColor};
+  ${props => media(props).lessThan("md")`
+    font-size: 2rem;
+  `}
 `
 
 const HeroContainer = styled(Container)`
   ${props => media(props).lessThan("md")`
-    padding-bottom: 10rem;
+    padding-bottom: 8rem;
   `}
 `
 

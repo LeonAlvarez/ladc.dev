@@ -8,11 +8,18 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import { ThemeContext } from '../utils/ThemeContext';
 import Header from "../components/header"
 import "./layout.css"
+
+const Footer = styled.footer`
+  background-color: ${props => props.bgColor || props.theme.footer.bgColor};
+  color: ${props => props.color || props.theme.footer.textColor};
+  padding: 1rem 2rem;
+  text-align: center;
+`
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
@@ -35,11 +42,11 @@ const Layout = ({ children }) => {
         headerLogoTitle={data.site.siteMetadata.description}
         headerLogo={data.site.siteMetadata.author} />
       <main>{children}</main>
-      <footer>
+      <Footer>
         © {new Date().getFullYear()}, Built with
           {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      </Footer>
     </ThemeProvider>
   )
 }

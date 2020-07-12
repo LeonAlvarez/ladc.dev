@@ -14,7 +14,7 @@ const WhoImWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 26rem;
+  min-height: 26rem;
   z-index: 10;
   position: relative;
 `;
@@ -33,7 +33,7 @@ const WhoImTerminal = styled(Terminal)`
   top: -9rem;
   ${props => media(props).lessThan("md")`
     max-width: calc(100vw - 5rem);
-    top: -1rem;
+    top: -8rem;
     left: -2rem;
     ${TerminalSocial} {
       right: -3rem;
@@ -61,22 +61,36 @@ const ImBgtitle = styled.h2`
   opacity: .1;
   ${props => media(props).greaterThan("md")`
     font-size: 20rem;
-    top: 2rem;
+    top: 8rem;
   `};
 `;
 
 const WhoImTitle = styled(Heading)`
   opacity: 0.75;
   color: red;
+  ${props => media(props).lessThan("md")`
+    font-size: 2.75rem;
+    margin-bottom: .5rem;
+  `};
+`;
+
+const HeadingQuestion = styled(Heading)`
+  opacity: 0.75;
+  ${props => media(props).lessThan("md")`
+    font-size: 1.5rem;
+  `};
 `;
 
 const WhoIm = ({ social }) => {
   return (
     <WhoImWrapper>
       <WhoImContainer>
-        <div>
-          <Heading level={4}>Now you may be wondering..</Heading>
-          <WhoImTitle level={3} fontSize="4rem">Who Are You?</WhoImTitle>
+        <div style={{
+          top: '-4rem',
+          position: 'relative'
+        }}>
+          <HeadingQuestion level={4}>Now you may be wondering..</HeadingQuestion>
+          <WhoImTitle level={3}>Who Are You?</WhoImTitle>
           <Button primary rounded>
             About me
         </Button>
