@@ -5,7 +5,13 @@ module.exports = {
     title: `León Alvarez Del Canto | Fullstack Developer`,
     description: `León Alvarez Del Canto`,
     author: `León`,
-    siteUrl: `https://ladc.dev`
+    siteUrl: `https://ladc.dev`,
+    social: {
+      Github: `LeonAlvarez`,
+      Twitter: `LeonAlvarez_`,
+      Telegram: `leondesign`,
+      Email: `leon@leon-design.es`,
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

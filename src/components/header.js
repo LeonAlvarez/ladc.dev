@@ -91,7 +91,7 @@ const HeaderMenu = ({ menuItems }) => {
       <HeaderMenuList>
         {menuItems.map((menuItem, i) => {
           return (
-            <HeaderLink key={i} prefetch to="#">
+            <HeaderLink key={i} to="#">
               {menuItem}
             </HeaderLink>
           );

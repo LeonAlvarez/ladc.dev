@@ -1,6 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from "gatsby"
 import { Github, Twitter, Telegram } from '@styled-icons/fa-brands'
 import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
@@ -77,29 +77,54 @@ const WhoImTitle = styled(Heading)`
   color: red;
 `;
 
-const WhoIm = () => (
-  <WhoImWrapper>
-    <WhoImContainer>
-      <WhoImTextWrapper>
-        <Heading level={4}>Now you may be wondering..</Heading>
-        <WhoImTitle level={3} fontSize="4rem">Who Are You?</WhoImTitle>
-        <Button primary rounded>
-          About me
+const WhoIm = () => {
+  const data = useStaticQuery(graphql`
+    query SocialQuery {
+      site {
+        siteMetadata {
+          author,
+          description
+          social {
+            Github
+            Twitter
+            Telegram
+            Email
+          }
+        }
+      }
+    }
+  `)
+  const { social } = data.site.siteMetadata
+  return (
+    <WhoImWrapper>
+      <WhoImContainer>
+        <WhoImTextWrapper>
+          <Heading level={4}>Now you may be wondering..</Heading>
+          <WhoImTitle level={3} fontSize="4rem">Who Are You?</WhoImTitle>
+          <Button primary rounded>
+            About me
         </Button>
-      </WhoImTextWrapper>
-      <WhoImTerminal>
-        <TerminalSocial>
-          <Link to="https://github.com/LeonAlvarez" target="_blank">
-            <Github size="32" color="white" title="Github" />
-          </Link>
-          <AlternateEmail size="32" color="#d42c2c" title="Email" />
-          <Twitter size="32" color="rgba(29,161,242,1.00)" title="Twitter" />
-          <Telegram size="32" color="#179cde" title="Telegram" />
-        </TerminalSocial>
-      </WhoImTerminal>
-      <ImBgtitle>LEÓN</ImBgtitle>
-    </WhoImContainer>
-  </WhoImWrapper>
-)
+        </WhoImTextWrapper>
+        <WhoImTerminal>
+          <TerminalSocial>
+            <a href={`https://github.com/${social.Github}`} target="_blank">
+              <Github size="32" color="white" title="Github" />
+            </a>
+            <a href={`mailto:${social.Email}?subject=Hi`} target="_blank">
+              <AlternateEmail size="32" color="#d42c2c" title="Email" />
+            </a>
+            <a href={`https://twitter.com/${social.Twitter}`} target="_blank">
+              <Twitter size="32" color="rgba(29,161,242,1.00)" title="Twitter" />
+            </a>
+            <a href={`https://t.me/${social.Telegram}`} target="_blank">
+              <Telegram size="32" color="#179cde" title="Telegram" />
+            </a>
+          </TerminalSocial>
+        </WhoImTerminal>
+        <ImBgtitle>LEÓN</ImBgtitle>
+      </WhoImContainer>
+    </WhoImWrapper >
+  )
+};
 
 export default WhoIm
