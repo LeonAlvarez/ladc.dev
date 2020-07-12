@@ -32,6 +32,10 @@ const MainLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: 200;
   text-decoration: none;
+  padding-left: 1rem;
+  &:hover {
+    -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
+  }
 `;
 
 const HeaderLink = styled(Link)`
@@ -40,29 +44,31 @@ const HeaderLink = styled(Link)`
   text-transform: uppercase;
   border-bottom: 1rem;
   border-color: transparent;
-  transition: all 0.2s ease -in -out;
+  font-weight: 200;
+  transition: all 0.2s ease-in-out;
   position: relative;
   margin: 0 .5rem;
-  padding: .75rem 1rem;
-    &:before,
-    &:after {
+  padding: .5rem;
+  &:before,
+  &:after {
     content: "";
     position: absolute;
     bottom: 0px;
     width: 0px;
     height: 2px;
-    transition: all 0.2s ease -in -out;
+    transition: all 0.2s ease-in-out;
     transition-duration: 0.5s;
     opacity: 0;
     background: #3490dc;
   }
-    &:before {
-    left: calc(50 % - 0.5rem);
+  &:before {
+    left: calc(50% - 0.5rem);
   }
-    &:after {
-    right: calc(50 % - 0.5rem);
+  &:after {
+    right: calc(50% - 0.5rem);
   }
-    &:hover {
+  &:hover {
+    -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
     cursor: pointer;
       &:before,
       &:after {
@@ -73,7 +79,7 @@ const HeaderLink = styled(Link)`
 `;
 
 const HeaderMenuList = styled.ul`
-display: flex;
+  display: flex;
 `;
 
 const HeaderMenu = ({ menuItems }) => {
