@@ -17,6 +17,9 @@ const WhoImWrapper = styled.section`
   min-height: 32rem;
   z-index: 10;
   position: relative;
+  ${props => media(props).lessThan("md")`
+    padding-bottom: 3rem;
+  `};
 `;
 
 const WhoImContainer = styled(Container)`

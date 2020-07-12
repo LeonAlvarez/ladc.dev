@@ -19,6 +19,7 @@ const HeroHeading = styled(Heading)`
 `
 
 const HeroContainer = styled(Container)`
+  padding-bottom: 4rem; 
   ${props => media(props).lessThan("md")`
     padding-bottom: 8rem;
   `}

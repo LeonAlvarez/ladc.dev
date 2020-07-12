@@ -12,7 +12,7 @@ const headings = {
     fontWeight: 600,
   },
   4: {
-    fontSize: '3rem',
+    fontSize: '2rem',
     fontWeight: 600,
   }
 }
