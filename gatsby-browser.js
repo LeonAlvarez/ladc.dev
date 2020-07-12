@@ -1,5 +1,12 @@
 import ReactGA from 'react-ga';
+import React from 'react';
 import { url, gaTrackId, gaOptimizeId } from './config.json';
+import ThemeContextWrapper from './src/utils/ThemeContext';
+
+// provide theme state to entire app
+export const wrapRootElement = ({ element }) => (
+    <ThemeContextWrapper>{element}</ThemeContextWrapper>
+);
 
 import 'prismjs/themes/prism-solarizedlight.css';
 
