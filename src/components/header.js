@@ -1,42 +1,106 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { Link } from "gatsby"
+import styled from 'styled-components';
+
+import { Container } from '../utils/components';
+
+const menuItems = ["Blog", "About", "Contact"];
+
+const HeaderWrapper = styled.header`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  right: 0; 
+  height: 70px;
+  background-color: ${props => props.theme.header.bgColor};
+  transition:background-color ${props => props.theme.transition},box-shadow 0.3s;
+  box-shadow: ${props => (props.isScrolled ? '0px 0px 10px #4d4d4d' : 'none')};
+`;
+
+const HeaderContainer = styled(Container)`
+  justify-content: space-between;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+`;
+
+const MainLink = styled(Link)`
+  color: ${ props => props.theme.header.textColor};
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-decoration: none;
+`;
+
+const HeaderLink = styled(Link)`
+  color: ${ props => props.theme.header.textColor};
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1rem;
+  border-color: transparent;
+  transition: all 0.2s ease -in -out;
+  position: relative;
+  margin: 0 .5rem;
+  padding: .75rem 1rem;
+    &:before,
+    &:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0px;
+    height: 2px;
+    transition: all 0.2s ease -in -out;
+    transition-duration: 0.5s;
+    opacity: 0;
+    background: #3490dc;
+  }
+    &:before {
+    left: calc(50 % - 0.5rem);
+  }
+    &:after {
+    right: calc(50 % - 0.5rem);
+  }
+    &:hover {
+    cursor: pointer;
+      &:before,
+      &:after {
+      width: 50%;
+      opacity: 1;
+    }
+  }
+`;
+
+const HeaderMenuList = styled.ul`
+display: flex;
+`;
+
+const HeaderMenu = ({ menuItems }) => {
+  return (
+    <HeaderMenuList>
+      {menuItems.map((menuItem, i) => {
+        return (
+          <HeaderLink key={i} prefetch to="#">
+            {menuItem}
+          </HeaderLink>
+        );
+      })}
+    </HeaderMenuList>
+  );
+}
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+  <HeaderWrapper>
+    <HeaderContainer>
+      <MainLink
+        to="/"
+      >
+        León Alvarez
+      </MainLink>
+      <HeaderMenu menuItems={menuItems} />
+    </HeaderContainer>
+  </HeaderWrapper>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
