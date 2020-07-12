@@ -69,6 +69,11 @@ const TerminalCursor = styled.span`
   }
 `;
 
+const TerminalInput = styled.span`
+  outline: none;
+  caret-color: transparent;
+`;
+
 const Terminal = ({ className, children }) => {
   const { element, triggerFull, exitFull } = useFullscreen();
 
@@ -83,6 +88,9 @@ const Terminal = ({ className, children }) => {
         <div>
           root: $&nbsp;
         <span />
+          <TerminalInput contentEditable={true}>
+            ll
+          </TerminalInput>
           <TerminalCursor />
         </div>
       </TerminalBody>
