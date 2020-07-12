@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from 'styled-components';
 import useFullscreen from "@am-hooks/use-full-screen";
 
@@ -70,11 +70,7 @@ const TerminalCursor = styled.span`
 `;
 
 const Terminal = ({ className, children }) => {
-  const [exitView, setExitView] = useState(false);
-  const onFull = isFull => {
-    setExitView(isFull);
-  };
-  const { element, triggerFull, exitFull } = useFullscreen(onFull);
+  const { element, triggerFull, exitFull } = useFullscreen();
 
   return (
     <TerminalWrapper ref={element} className={className}>
