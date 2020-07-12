@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const TerminalWrapper = styled.section`
   text-align: left;
   width: 600px;
+  max-width: calc(100vw - 1rem);
   height: 360px;
   z-index: 1;
   border-radius: 10px;
@@ -33,7 +34,7 @@ const TerminalHeaderIcon = styled.div`
   background-color: ${props => iconsColors[props.color] || iconsColors.red};
 `;
 
-const TerminalBody = styled.section`
+export const TerminalBody = styled.section`
   color: #fff;
   font-family: Operator Mono,Fira Code,Menlo,Consolas,Monaco,Andale Mono,Courier New,Courier;
   font-size: 1rem;
@@ -73,7 +74,7 @@ const Terminal = ({ className, children }) => (
       <TerminalHeaderIcon color="yellow" />
       <TerminalHeaderIcon color="red" />
     </TerminalHeader>
-    <TerminalBody>
+    <TerminalBody className="terminal__body">
       <div>
         root: $&nbsp;
         <span />

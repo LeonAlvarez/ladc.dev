@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components';
 
+import media from "../utils/mediaQueries"
 import { Container } from '../utils/components';
 
 const HeaderWrapper = styled.header`
@@ -30,9 +31,9 @@ const MainLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: 200;
   text-decoration: none;
-  @media (min-width: 768px) {
+  ${props => media(props).greaterThan("md")`
     padding-left: 1rem;
-  }
+  `};
   &:hover {
     -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
   }
@@ -48,9 +49,9 @@ const HeaderLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   position: relative;
   padding: .5rem;
-  @media (min-width: 768px) {
+  ${props => media(props).greaterThan("md")`
     margin: 0 .5rem;
-  }
+  `};
   &:before,
   &:after {
     content: "";

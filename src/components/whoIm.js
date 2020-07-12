@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Github, Twitter, Telegram } from '@styled-icons/fa-brands'
 import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
-import Terminal from './terminal';
+
+import media from "../utils/mediaQueries"
+import Terminal, { TerminalBody } from './terminal';
 
 const WhoImWrapper = styled.section`
   display: flex;
@@ -21,29 +23,25 @@ const WhoImContainer = styled(Container)`
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  flex-direction: column-reverse;
+  ${props => media(props).greaterThan("md")`
+    flex-direction: row;
+  `};
 `;
 
 const WhoImTerminal = styled(Terminal)`
   top: -6rem;
-`;
-
-const ImBgtitle = styled.h2`
-  color: ${props => props.bgColor || props.theme.bgColor};
-  position: absolute;
-  top: 2rem;
-  right: 0;
-  z-index: 0;
-  font-size: 20rem;
-  opacity: .1;
-`;
-
-const WhoImTextWrapper = styled.div`
-
-`;
-
-const WhoImTitle = styled(Heading)`
-  opacity: 0.75;
-  color: red;
+  ${props => media(props).lessThan("md")`
+    max-width: calc(100vw - 5rem);
+    top: -1rem;
+    left: -2rem;
+    ${TerminalBody} {
+      opacity: 1;
+    }
+    ${TerminalSocial} {
+      right: -3rem;
+    }
+  `}
 `;
 
 const TerminalSocial = styled.div`
@@ -54,6 +52,29 @@ const TerminalSocial = styled.div`
   top: 1rem;
   height: 12rem;
   justify-content: space-around;
+`;
+
+const ImBgtitle = styled.h2`
+  color: ${props => props.bgColor || props.theme.bgColor};
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  z-index: 0;
+  font-size: 10rem;
+  opacity: .1;
+  ${props => media(props).greaterThan("md")`
+    font-size: 20rem;
+    flex-direction: row;
+  `};
+`;
+
+const WhoImTextWrapper = styled.div`
+
+`;
+
+const WhoImTitle = styled(Heading)`
+  opacity: 0.75;
+  color: red;
 `;
 
 const WhoIm = () => (
@@ -68,7 +89,9 @@ const WhoIm = () => (
       </WhoImTextWrapper>
       <WhoImTerminal>
         <TerminalSocial>
-          <Github size="32" color="white" title="Github" />
+          <Link to="https://github.com/LeonAlvarez" target="_blank">
+            <Github size="32" color="white" title="Github" />
+          </Link>
           <AlternateEmail size="32" color="#d42c2c" title="Email" />
           <Twitter size="32" color="rgba(29,161,242,1.00)" title="Twitter" />
           <Telegram size="32" color="#179cde" title="Telegram" />
