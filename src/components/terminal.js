@@ -34,6 +34,11 @@ const TerminalWrapper = styled.section`
   margin: auto;
   position: relative;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  &:hover {
+     ${TerminalBody} {
+      opacity: 1;
+    }
+  }
 `;
 
 const TerminalHeader = styled.div`
@@ -72,7 +77,6 @@ export const TerminalBody = styled.section`
   top: 30px;
   border-radius: 0 0 10px 10px;
   bottom: 0;
-  opacity: .85;
   cursor: text;
   overflow: auto;
 `;
