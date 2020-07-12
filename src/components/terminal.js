@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from 'styled-components';
+import useFullscreen from "@am-hooks/use-full-screen";
 
 const TerminalWrapper = styled.section`
   text-align: left;
@@ -68,22 +69,30 @@ const TerminalCursor = styled.span`
   }
 `;
 
-const Terminal = ({ className, children }) => (
-  <TerminalWrapper className={className}>
-    <TerminalHeader>
-      <TerminalHeaderIcon color="green" />
-      <TerminalHeaderIcon color="yellow" />
-      <TerminalHeaderIcon color="red" />
-    </TerminalHeader>
-    <TerminalBody className="terminal__body">
-      <div>
-        root: $&nbsp;
+const Terminal = ({ className, children }) => {
+  const [exitView, setExitView] = useState(false);
+  const onFull = isFull => {
+    setExitView(isFull);
+  };
+  const { element, triggerFull, exitFull } = useFullscreen(onFull);
+
+  return (
+    <TerminalWrapper ref={element} className={className}>
+      <TerminalHeader>
+        <TerminalHeaderIcon onClick={exitFull} color="red" />
+        <TerminalHeaderIcon onClick={exitFull} color="yellow" />
+        <TerminalHeaderIcon onClick={triggerFull} color="green" />
+      </TerminalHeader>
+      <TerminalBody className="terminal__body">
+        <div>
+          root: $&nbsp;
         <span />
-        <TerminalCursor />
-      </div>
-    </TerminalBody>
-    {children}
-  </TerminalWrapper>
-)
+          <TerminalCursor />
+        </div>
+      </TerminalBody>
+      {children}
+    </TerminalWrapper>
+  );
+}
 
 export default Terminal;
