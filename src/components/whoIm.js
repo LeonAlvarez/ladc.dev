@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components';
-import { Github, Twitter, Telegram } from '@styled-icons/fa-brands'
+import { Github, Twitter, Telegram, Linkedin } from '@styled-icons/fa-brands'
 import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
 
@@ -46,8 +46,8 @@ const TerminalSocial = styled.div`
   flex-direction: column;
   position: absolute;
   right: -3rem;
-  top: 1rem;
-  height: 12rem;
+  top: 1.75rem;
+  height: 13rem;  
   justify-content: space-around;
 `;
 
@@ -89,7 +89,7 @@ const WhoIm = ({ social }) => {
           top: '-4rem',
           position: 'relative'
         }}>
-          <HeadingQuestion level={4}>Now you may be wondering..</HeadingQuestion>
+          <HeadingQuestion level={4}>Now you may be wondering...</HeadingQuestion>
           <WhoImTitle level={3}>Who Are You?</WhoImTitle>
           <Button primary rounded>
             About me
@@ -105,6 +105,9 @@ const WhoIm = ({ social }) => {
             </a>
             <a href={`https://twitter.com/${social.Twitter}`} target="_blank">
               <Twitter size="32" color="rgba(29,161,242,1.00)" title="Twitter" />
+            </a>
+            <a href={`https://www.linkedin.com/in/${social.Linkedin}`} target="_blank">
+              <Linkedin size="32" color="#0377b5" title="Linkedin" />
             </a>
             <a href={`https://t.me/${social.Telegram}`} target="_blank">
               <Telegram size="32" color="#179cde" title="Telegram" />

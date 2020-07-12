@@ -11,6 +11,7 @@ module.exports = {
       Twitter: `LeonAlvarez_`,
       Telegram: `leondesign`,
       Email: `leon@leon-design.es`,
+      Linkedin: `leon-alvarez-del-canto`
     }
   },
   plugins: [
