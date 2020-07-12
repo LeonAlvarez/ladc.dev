@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import { Container } from '../utils/components';
 
-const menuItems = ["Blog", "About", "Contact"];
-
 const HeaderWrapper = styled.header`
   position: fixed;
   display: flex;
@@ -88,25 +86,28 @@ const HeaderMenuList = styled.ul`
 
 const HeaderMenu = ({ menuItems }) => {
   return (
-    <HeaderMenuList>
-      {menuItems.map((menuItem, i) => {
-        return (
-          <HeaderLink key={i} prefetch to="#">
-            {menuItem}
-          </HeaderLink>
-        );
-      })}
-    </HeaderMenuList>
+    <nav>
+      <HeaderMenuList>
+        {menuItems.map((menuItem, i) => {
+          return (
+            <HeaderLink key={i} prefetch to="#">
+              {menuItem}
+            </HeaderLink>
+          );
+        })}
+      </HeaderMenuList>
+    </nav>
   );
 }
 
-const Header = ({ siteTitle }) => (
+const Header = ({ headerLogo, headerLogoTitle, menuItems }) => (
   <HeaderWrapper>
     <HeaderContainer>
       <MainLink
         to="/"
+        title={headerLogoTitle}
       >
-        León Alvarez
+        {headerLogo}
       </MainLink>
       <HeaderMenu menuItems={menuItems} />
     </HeaderContainer>

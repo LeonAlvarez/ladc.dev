@@ -18,7 +18,8 @@ const darkTheme = {
         textColor: '#fff',
         accentColor: '#3490dc'
     },
-    textColor: '#f9f9f9',
+    textColor: '#05233b',
+    lightTextColor: '#f9f9f9',
     accentColor: '#6128d3',
 };
 

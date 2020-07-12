@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `León Alvarez Del Canto | Fullstack Developer`,
     description: `León Alvarez Del Canto`,
-    author: `LeonAlvarez`,
+    author: `León`,
     siteUrl: `https://ladc.dev`
   },
   plugins: [

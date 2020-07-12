@@ -17,32 +17,29 @@ import "./layout.css"
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query HeaderTitleQuery {
       site {
         siteMetadata {
-          title
+          author,
+          description
         }
       }
     }
   `)
+  const menuItems = ["Blog", "About", "Contact"];
 
   return (
     <ThemeProvider theme={theme.currentTheme}>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `4rem auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
+      <Header
+        menuItems={menuItems}
+        headerLogoTitle={data.site.siteMetadata.description}
+        headerLogo={data.site.siteMetadata.author} />
+      <main>{children}</main>
+      <footer>
+        © {new Date().getFullYear()}, Built with
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </footer>
     </ThemeProvider>
   )
 }
