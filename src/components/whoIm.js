@@ -5,7 +5,7 @@ import { AlternateEmail } from '@styled-icons/material';
 import { Container, Heading, Button } from '../utils/components';
 
 import media from "../utils/mediaQueries"
-import Terminal, { TerminalBody } from './terminal';
+import Terminal from './terminal';
 
 const WhoImWrapper = styled.section`
   display: flex;
@@ -81,20 +81,24 @@ const HeadingQuestion = styled(Heading)`
   `};
 `;
 
+const TextWrapper = styled.div`
+  position: relative;
+  ${props => media(props).lessThan("md")`
+    top: -4rem,
+  `};
+`;
+
 const WhoIm = ({ social }) => {
   return (
     <WhoImWrapper>
       <WhoImContainer>
-        <div style={{
-          top: '-4rem',
-          position: 'relative'
-        }}>
+        <TextWrapper>
           <HeadingQuestion level={4}>Now you may be wondering...</HeadingQuestion>
           <WhoImTitle level={3}>Who Are You?</WhoImTitle>
           <Button primary rounded>
             About me
-        </Button>
-        </div>
+          </Button>
+        </TextWrapper>
         <WhoImTerminal>
           <TerminalSocial>
             <a href={`https://github.com/${social.Github}`} target="_blank">

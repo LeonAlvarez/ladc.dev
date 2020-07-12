@@ -1,6 +1,6 @@
 const headings = {
   1: {
-    fontSize: '5rem',
+    fontSize: '3rem',
     fontWeight: 600,
   },
   2: {

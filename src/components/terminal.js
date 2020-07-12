@@ -140,14 +140,15 @@ const TerminalLine = ({ innerRef, executeCommand }) => {
 }
 
 const Command = ({ command, className }) => {
-  const { command: commandName, res, at } = command;
+  const { command: commandName, res, at, args } = command;
+  console.log(args)
   return (
     <div className={className}>
       <div>
         <span>
           root: $&nbsp;
         </span>
-        {commandName}
+        {commandName} {args && args.join('')}
       </div>
       <pre>{res}</pre>
     </div>
@@ -181,24 +182,24 @@ const Terminal = ({ className, children }) => {
   const COMMANDS = {
     cl: clear,
     clear,
-    v: ({ command }) => {
-      pushCommand({ command, res: version });
+    v: ({ command, args }) => {
+      pushCommand({ command, args, res: version });
     },
-    help: ({ command }) => {
+    help: ({ command, args }) => {
       const res = `
 cl, clear         clear terminal history
 h, help           display list of avalible commands
 v, version        print project version
       `
-      pushCommand({ command, res });
+      pushCommand({ command, args, res });
     },
-    default: ({ command }) => {
-      return pushCommand({ command })
+    default: ({ command, args }) => {
+      return pushCommand({ command, args })
     }
   }
 
   const executeCommand = (text) => {
-    const [command, args] = text.trim().split(" ")
+    const [command, ...args] = text.trim().split(" ")
     return (COMMANDS[command] || COMMANDS.default)({ command, args })
   }
 

@@ -12,6 +12,7 @@ import WhoIm from "../components/whoIm"
 
 const HeroHeading = styled(Heading)`
   color: ${props => props.textColor || props.theme.lightTextColor};
+  max-width: 37rem;
   ${props => media(props).lessThan("md")`
     font-size: 2rem;
   `}
