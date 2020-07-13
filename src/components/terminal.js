@@ -100,20 +100,27 @@ const TerminalInput = styled.span.attrs(({ contentEditable }) => ({
   caret-color: transparent;
 `;
 
-export const COMMANDS = ({ clear } = {}) => ({
-  cl: clear,
-  clear,
-  v: ({ command, args }) => ({ command, args, res: version }),
-  help: ({ command, args }) => {
+export const COMMANDS = ({ clear } = {}) => {
+  const showVersion = ({ command, args }) => ({ command, args, res: version });
+  const showHelp = ({ command, args }) => {
     const res = `
 cl, clear         clear terminal history
 h, help           display list of avalible commands
 v, version        print project version
       `
     return { command, args, res };
-  },
-  default: ({ command, args }) => ({ command, args })
-})
+  };
+
+  return {
+    cl: clear,
+    clear,
+    v: showVersion,
+    version: showVersion,
+    help: showHelp,
+    h: showHelp,
+    default: ({ command, args }) => ({ command, args })
+  }
+}
 
 const TerminalLine = ({ innerRef, executeCommand, initalState }) => {
   const [html, setHtml] = useState(initalState);
