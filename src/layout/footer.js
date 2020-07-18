@@ -13,6 +13,8 @@ const FooterWrapper = styled.footer`
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const FooterCopyRight = styled.div`
