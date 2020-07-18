@@ -104,9 +104,9 @@ export const COMMANDS = ({ clear } = {}) => {
   const showVersion = ({ command, args }) => ({ command, args, res: version });
   const showHelp = ({ command, args }) => {
     const res = `
-cl, clear         clear terminal history
-h, help           display list of avalible commands
-v, version        print project version
+cl, clear                 clear terminal history
+h, help                   display list of avalible commands
+v, version                print project version
       `
     return { command, args, res };
   };
@@ -118,7 +118,11 @@ v, version        print project version
     version: showVersion,
     help: showHelp,
     h: showHelp,
-    default: ({ command, args }) => ({ command, args })
+    default: ({ command, args }) => ({
+      command,
+      args,
+      res: `The command "${command}" isn't supported, sorry!`
+    })
   }
 }
 
