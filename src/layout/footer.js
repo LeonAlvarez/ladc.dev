@@ -20,8 +20,8 @@ const FooterWrapper = styled.footer`
 const FooterCopyRight = styled.div`
   color: hsla(208, 19%, 53%, 1);
   a {
-    &::hover{
-      color: hsla(208, 39%, 63%, 1);
+    &:hover{
+      color: hsla(208, 89%, 73%, 1);
     }
   }
 `;
@@ -35,7 +35,7 @@ const SocialLink = styled.a`
   margin: .5rem;
   transition: all 0.37s ease 0s;
   &:hover {
-    color: hsla(208, 39%, 63%, 1);
+    color: hsla(208, 89%, 73%, 1);
     svg {
       transform: scale(1.15);
     }

@@ -33,28 +33,28 @@ const lightTheme = {
 const darkTheme = {
   transition: '0.37s',
   bgColor: '#05233b',
-  lightBgColor: '#f9f9f9',
+  lightBgColor: 'hsla(208, 19%, 93%, 1)',
   header: {
     bgColor: '#05233b',
-    textColor: '#f9f9f9',
+    textColor: 'hsla(208, 19%, 83%, 1)',
     accentColor: '#3490dc'
   },
   footer: {
     bgColor: '#05233b',
-    textColor: '#f9f9f9',
+    textColor: 'hsla(208, 19%, 83%, 1)',
     accentColor: '#3490dc'
   },
   textColor: '#05233b',
-  lightTextColor: '#f9f9f9',
+  lightTextColor: 'hsla(208, 19%, 83%, 1)',
   accentColor: '#6128d3',
   headings,
   buttons: {
     primary: {
       bgColor: '#05233b',
-      color: '#f9f9f9',
+      color: 'hsla(208, 19%, 83%, 1)',
     },
     secondary: {
-      bgColor: '#f9f9f9',
+      bgColor: 'hsla(208, 19%, 93%, 1)',
       color: '#05233b',
     },
   },
