@@ -10,16 +10,12 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider } from 'styled-components';
 
-import { ThemeContext } from '../utils/ThemeContext';
-import Header from "../components/header"
+import { ThemeContext } from '../utils/ThemeContext'
+import Header from "./header"
+import Footer from "./footer"
+
 import "./layout.css"
 
-const Footer = styled.footer`
-  background-color: ${props => props.bgColor || props.theme.footer.bgColor};
-  color: ${props => props.color || props.theme.footer.textColor};
-  padding: 1rem 2rem;
-  text-align: center;
-`
 const LayoutWrapper = styled.div`
   min-height: 100vh;
   margin: 0px;
@@ -29,7 +25,7 @@ const LayoutWrapper = styled.div`
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
   const data = useStaticQuery(graphql`
-    query HeaderTitleQuery {
+    query LayoutQuery {
       site {
         siteMetadata {
           author,
@@ -48,13 +44,9 @@ const Layout = ({ children }) => {
           headerLogoTitle={data.site.siteMetadata.description}
           headerLogo={data.site.siteMetadata.author} />
         <main style={{ overflow: 'hidden' }}>{children}</main>
-        <Footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </Footer>
+        <Footer />
       </LayoutWrapper>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 

@@ -28,7 +28,7 @@ const TerminalWrapper = styled.section`
   text-align: left;
   width: 600px;
   max-width: calc(100vw - 1rem);
-  height: 360px;
+  height: 380px;
   z-index: 1;
   border-radius: 10px;
   margin: auto;

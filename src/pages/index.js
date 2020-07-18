@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 import { Heading, Container } from './../utils/components';
 import media from "../utils/mediaQueries"
-import Layout from "../templates/layout"
-import Image from "../components/image"
+import Layout from "../layout/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero"
 import WhoIm from "../components/whoIm"
