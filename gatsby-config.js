@@ -22,6 +22,27 @@ module.exports = {
     `gatsby-plugin-sharp`,
     'gatsby-plugin-sitemap',
     {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Poppins",
+              variants: ["100", "300", "400", "500"],
+            },
+            {
+              family: "Inconsolata",
+              variants: ["400", "700"],
+            },
+            {
+              family: "Ubuntu",
+              variants: ["400", "700"],
+            },
+          ],
+        },
+      },
+    },
+    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [

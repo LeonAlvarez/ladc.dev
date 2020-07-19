@@ -4,7 +4,7 @@ const headings = {
     fontWeight: 600,
   },
   2: {
-    fontSize: '4.5rem',
+    fontSize: '2.75rem',
     fontWeight: 600,
   },
   3: {
@@ -72,6 +72,11 @@ const darkTheme = {
   },
   borderRadius: {
     rounded: '0.25rem'
+  },
+  fontFamilies: {
+    monoSpace: 'Inconsolata',
+    text: 'Poppins',
+    title: 'Ubuntu'
   },
   screens: {
     'sm': '640px',
