@@ -10,12 +10,23 @@ import Hero from "../components/hero"
 import WhoIm from "../components/whoIm"
 import Shape1 from "../../static/yout-shape1.png"
 import Shape2 from "../../static/yout-shape2.png"
+import { Description } from "@styled-icons/material";
 
 const HeroHeading = styled(Heading)`
+  position: relative;
   color: ${props => props.textColor || props.theme.lightTextColor};
   font-family: "${({ theme }) => theme.fontFamilies.text}";
   font-weight: 400;
-  font-size: 3rem;
+  z-index: 1;
+  padding: 0 .25rem;
+    margin: 0 -.25rem;
+  font-size: 4rem;
+  background-image: linear-gradient(transparent calc(65% - .25rem), hsla(208, 79%, 33%, 1) .25rem);
+  background-size: 100%;
+  background-position-y: -.35rem;
+  background-repeat: no-repeat;
+  display: inline;
+  transition: 0.5s ease;
   ${props => media(props).lessThan("md")`
     font-size: 2rem;
   `}
@@ -24,7 +35,7 @@ const HeroHello = styled(Heading)`
   color: ${props => props.textColor || props.theme.lightTextColor};
   font-family: "${({ theme }) => theme.fontFamilies.text}";
   font-weight: 100;
-  font-size: 3rem;
+  font-size: 4rem;
   ${props => media(props).lessThan("md")`
     font-size: 2rem;
   `}
@@ -66,7 +77,7 @@ const IndexHero = styled(Hero)`
       top: -65px;
       right: -100px;
       transform: scale(.5);
-    }`
+    `}
   }
 `
 
@@ -88,7 +99,7 @@ const IndexPage = () => {
       }
     }
   `)
-  const { social, description } = data.site.siteMetadata;
+  const { social, author, description } = data.site.siteMetadata;
 
   return (
     <Layout>
@@ -101,15 +112,13 @@ const IndexPage = () => {
           <HeroHello level={1}>
             I'm {" "}
             <HeroHeading level={1} as="span">
-              {description}
+              {author}
             </HeroHeading>
-          </HeroHello>
-          <HeroHello level={1}>
-            a
+            {" "} a {" "}
             <HeroHeading level={1} as="span">
-              {` fullstack `}
+              Fullstack
             </HeroHeading>
-            developer.
+            {" "} Developer.
           </HeroHello>
         </HeroContainer>
       </IndexHero>
