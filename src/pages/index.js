@@ -29,6 +29,7 @@ const HeroHeading = styled(Heading)`
   transition: 0.5s ease;
   ${props => media(props).lessThan("md")`
     font-size: 2rem;
+    background-image: linear-gradient(transparent calc(75% - .25rem), hsla(208, 79%, 33%, 1) .25rem);
   `}
 `
 const HeroHello = styled(Heading)`
