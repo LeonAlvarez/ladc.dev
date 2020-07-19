@@ -14,7 +14,7 @@ const HeaderWrapper = styled.header`
   left: 0;
   right: 0; 
   height: 70px;
-  transition:background-color ${props => props.theme.transition},box-shadow 0.3s;
+  background-color: ${props => props.bgColor || props.theme.header.bgColor};
   box-shadow: ${props => (props.isScrolled ? '0px 0px 10px #4d4d4d' : 'none')};
 `;
 
@@ -22,7 +22,6 @@ const HeaderContainer = styled(Container)`
   justify-content: space-between;
   padding: 1rem;
   display: flex;
-  z-index: 150;
   align-items: center;
 `;
 

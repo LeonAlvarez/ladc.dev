@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components";
+import Img from "gatsby-image"
 
 import { Heading, Container } from './../utils/components';
 import media from "../utils/mediaQueries"
@@ -8,8 +9,8 @@ import Layout from "../layout/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero"
 import WhoIm from "../components/whoIm"
-import Shape1 from "../../static/yout-shape1.png"
-import Shape2 from "../../static/yout-shape2.png"
+import Shape1 from "../../static/header-shape1.png"
+import Shape2 from "../../static/header-shape2.png"
 import { Description } from "@styled-icons/material";
 
 const HeroHeading = styled(Heading)`
@@ -44,9 +45,33 @@ const HeroHello = styled(Heading)`
 
 const HeroContainer = styled(Container)`
   padding-bottom: 8rem; 
+  display: flex;
+  align-items: center;
   ${props => media(props).lessThan("md")`
     padding-bottom: 8rem;
   `}
+`
+
+const HeroImg = styled(Img)`
+  position: absolute !important;
+  transition: all 0.47s ease-in 0s;
+  z-index: ${prop => prop.top ? 2 : 1};
+  opacity: ${prop => prop.top ? prop.isZeusShown ? 1 : 0 : 1};
+  border-radius: 50%;
+  border: .25rem solid ${props => props.theme.lightTextColor};
+`
+const HeroImgWrapper = styled.div`
+  position: relative;
+  display: flex;
+  width: 180px;
+  margin-right: 2rem;
+  height: 180px;
+`
+
+const HeroTextWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
 `
 
 const IndexHero = styled(Hero)`
@@ -82,7 +107,30 @@ const IndexHero = styled(Hero)`
   }
 `
 
+const HeroText = ({ author }) => {
+  return (
+    <HeroTextWrapper>
+      <HeroHello level={1}>
+        Hello!
+            </HeroHello>
+      <HeroHello level={1}>
+        I'm {" "}
+        <HeroHeading level={1} as="span">
+          {author}
+        </HeroHeading>
+        {" "} a {" "}
+        <HeroHeading level={1} as="span">
+          Fullstack
+              </HeroHeading>
+        {" "} Developer.
+            </HeroHello>
+    </HeroTextWrapper>
+  );
+}
+
 const IndexPage = () => {
+  const [isZeusShown, setIsZeusShown] = useState(false);
+
   const data = useStaticQuery(graphql`
     query SocialQuery {
       site {
@@ -98,29 +146,61 @@ const IndexPage = () => {
           }
         }
       }
+      us: file(relativePath: { eq: "us.jpeg" }) {
+        childImageSharp {
+          fixed(width: 180, height: 180) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      zeus: file(relativePath: { eq: "zeus.jpeg" }) {
+        childImageSharp {
+          fixed(width: 180, height: 180) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
     }
   `)
-  const { social, author, description } = data.site.siteMetadata;
+
+  const {
+    site: {
+      siteMetadata: {
+        social,
+        author,
+        description
+      }
+    },
+    us: {
+      childImageSharp: {
+        fixed: usFixed
+      }
+    },
+    zeus: {
+      childImageSharp: {
+        fixed: zeusFixed
+      }
+    }
+  } = data;
 
   return (
     <Layout>
       <SEO title="Home" />
       <IndexHero>
         <HeroContainer>
-          <HeroHello level={1}>
-            Hello!
-          </HeroHello>
-          <HeroHello level={1}>
-            I'm {" "}
-            <HeroHeading level={1} as="span">
-              {author}
-            </HeroHeading>
-            {" "} a {" "}
-            <HeroHeading level={1} as="span">
-              Fullstack
-            </HeroHeading>
-            {" "} Developer.
-          </HeroHello>
+          <HeroImgWrapper
+            onMouseEnter={() => setIsZeusShown(true)}
+            onMouseLeave={() => setIsZeusShown(false)}>
+            < HeroImg
+              fixed={usFixed}
+            />
+            < HeroImg
+              top
+              isZeusShown={isZeusShown}
+              fixed={zeusFixed}
+            />
+          </HeroImgWrapper>
+          < HeroText author={author} />
         </HeroContainer>
       </IndexHero>
       <WhoIm social={social} />
