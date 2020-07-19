@@ -22,7 +22,7 @@ const HeroHeading = styled(Heading)`
   padding: 0 .25rem;
     margin: 0 -.25rem;
   font-size: 4rem;
-  background-image: linear-gradient(transparent calc(65% - .25rem), hsla(208, 79%, 33%, 1) .25rem);
+  background-image: linear-gradient(transparent calc(65% - .25rem), hsla(216, 80%, 41%, 1) .25rem);
   background-size: 100%;
   background-position-y: -.35rem;
   background-repeat: no-repeat;
@@ -30,7 +30,7 @@ const HeroHeading = styled(Heading)`
   transition: 0.5s ease;
   ${props => media(props).lessThan("md")`
     font-size: 2rem;
-    background-image: linear-gradient(transparent calc(75% - .25rem), hsla(208, 79%, 33%, 1) .25rem);
+    background-image: linear-gradient(transparent calc(75% - .25rem), hsla(216, 80%, 41%, 1) .25rem);
   `}
 `
 const HeroHello = styled(Heading)`

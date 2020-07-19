@@ -32,30 +32,30 @@ const lightTheme = {
 
 const darkTheme = {
   transition: '0.37s',
-  bgColor: '#05233b',
-  lightBgColor: 'hsla(208, 19%, 93%, 1)',
+  bgColor: '#00173a',
+  lightBgColor: 'hsl(216, 10%, 90%, 1)',
   header: {
-    bgColor: '#05233b',
-    textColor: 'hsla(208, 19%, 83%, 1)',
-    accentColor: '#3490dc'
+    bgColor: '#00173a',
+    textColor: 'hsl(216, 10%, 90%, 1)',
+    accentColor: 'hsla(216, 80%, 41%, 1)'
   },
   footer: {
-    bgColor: '#05233b',
-    textColor: 'hsla(208, 19%, 83%, 1)',
-    accentColor: '#3490dc'
+    bgColor: '#00173a',
+    textColor: 'hsl(216, 20%, 80%, 1)',
+    accentColor: 'hsla(216, 80%, 41%, 1)'
   },
-  textColor: '#05233b',
-  lightTextColor: 'hsla(208, 19%, 83%, 1)',
+  textColor: '#00173a',
+  lightTextColor: 'hsl(216, 20%, 80%, 1)',
   accentColor: '#6128d3',
   headings,
   buttons: {
     primary: {
-      bgColor: '#05233b',
-      color: 'hsla(208, 19%, 83%, 1)',
+      bgColor: '#00173a',
+      color: 'hsl(216, 20%, 80%, 1)',
     },
     secondary: {
-      bgColor: 'hsla(208, 19%, 93%, 1)',
-      color: '#05233b',
+      bgColor: 'hsl(216, 20%, 80%, 1)',
+      color: '#00173a',
     },
   },
   buttonsSize: {

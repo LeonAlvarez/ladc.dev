@@ -63,7 +63,7 @@ const HeaderLink = styled(Link)`
     transition: all 0.2s ease-in-out;
     transition-duration: 0.5s;
     opacity: 0;
-    background: #3490dc;
+    background: hsla(216, 80%, 41%, 1);
   }
   &:before {
     left: calc(50% - 0.5rem);
