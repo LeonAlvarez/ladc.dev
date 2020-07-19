@@ -45,7 +45,6 @@ const IndexHero = styled(Hero)`
     background: url(${Shape1});
     height: 240px;
     width: 350px;
-    z-index: 20;
     position: absolute;
     background-repeat: no-repeat;
     bottom: 0;
@@ -56,7 +55,6 @@ const IndexHero = styled(Hero)`
     background: url(${Shape2});
     height: 260px;
     width: 400px;
-    z-index: 20;
     position: absolute;
     background-repeat: no-repeat;
     top: 0;
