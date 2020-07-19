@@ -216,12 +216,12 @@ const IndexPage = () => {
             onMouseEnter={() => setIsZeusShown(true)}
             onMouseLeave={() => setIsZeusShown(false)}>
             < HeroImg
-              fixed={zeusSources}
+              fixed={usSources}
             />
             < HeroImg
               top
               isZeusShown={isZeusShown}
-              fixed={usSources}
+              fixed={zeusSources}
             />
           </HeroImgWrapper>
           <HeroText author={author} />
