@@ -14,7 +14,6 @@ const HeaderWrapper = styled.header`
   left: 0;
   right: 0; 
   height: 70px;
-  background-color: ${props => props.theme.header.bgColor};
   transition:background-color ${props => props.theme.transition},box-shadow 0.3s;
   box-shadow: ${props => (props.isScrolled ? '0px 0px 10px #4d4d4d' : 'none')};
 `;
