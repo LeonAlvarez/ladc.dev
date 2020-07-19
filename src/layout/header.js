@@ -9,7 +9,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   display: flex;
   justify-content: center;
-  z-index: 40;
+  z-index: 100;
   top: 0;
   left: 0;
   right: 0; 
@@ -22,6 +22,7 @@ const HeaderContainer = styled(Container)`
   justify-content: space-between;
   padding: 1rem;
   display: flex;
+  z-index: 150;
   align-items: center;
 `;
 
