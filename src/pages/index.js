@@ -64,8 +64,13 @@ const HeroImgWrapper = styled.div`
   position: relative;
   display: flex;
   width: 180px;
-  margin-right: 2rem;
   height: 180px;
+  margin-right: 2rem;
+  ${props => media(props).lessThan("md")`
+    width: 140px;
+    height: 140px;
+    margin-right: 1.5rem;
+  `}
 `
 
 const HeroTextWrapper = styled.div`
@@ -153,9 +158,23 @@ const IndexPage = () => {
           }
         }
       }
+      usMobile: file(relativePath: { eq: "us.jpeg" }) {
+        childImageSharp {
+          fixed(width: 140, height: 140) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
       zeus: file(relativePath: { eq: "zeus.jpeg" }) {
         childImageSharp {
           fixed(width: 180, height: 180) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      zeusMobile: file(relativePath: { eq: "zeus.jpeg" }) {
+        childImageSharp {
+          fixed(width: 140, height: 140) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -170,18 +189,23 @@ const IndexPage = () => {
         author,
         description
       }
-    },
-    us: {
-      childImageSharp: {
-        fixed: usFixed
-      }
-    },
-    zeus: {
-      childImageSharp: {
-        fixed: zeusFixed
-      }
     }
   } = data;
+
+  const zeusSources = [
+    data.zeusMobile.childImageSharp.fixed,
+    {
+      ...data.zeus.childImageSharp.fixed,
+      media: `(min-width: 769px)`,
+    },
+  ];
+  const usSources = [
+    data.usMobile.childImageSharp.fixed,
+    {
+      ...data.us.childImageSharp.fixed,
+      media: `(min-width: 769px)`,
+    },
+  ]
 
   return (
     <Layout>
@@ -192,15 +216,15 @@ const IndexPage = () => {
             onMouseEnter={() => setIsZeusShown(true)}
             onMouseLeave={() => setIsZeusShown(false)}>
             < HeroImg
-              fixed={usFixed}
+              fixed={zeusSources}
             />
             < HeroImg
               top
               isZeusShown={isZeusShown}
-              fixed={zeusFixed}
+              fixed={usSources}
             />
           </HeroImgWrapper>
-          < HeroText author={author} />
+          <HeroText author={author} />
         </HeroContainer>
       </IndexHero>
       <WhoIm social={social} />
