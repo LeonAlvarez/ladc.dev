@@ -50,8 +50,7 @@ const IndexHero = styled(Hero)`
     bottom: 0;
     left: 0;
     ${props => media(props).lessThan("md")`
-      bottom: -60px;
-      left: -90px;
+      display: none;
     `}
   }
   &::after {
