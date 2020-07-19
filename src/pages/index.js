@@ -49,6 +49,10 @@ const IndexHero = styled(Hero)`
     background-repeat: no-repeat;
     bottom: 0;
     left: 0;
+    ${props => media(props).lessThan("md")`
+      bottom: -60px;
+      left: -90px;
+    `}
   }
   &::after {
     content: " ";
@@ -59,6 +63,11 @@ const IndexHero = styled(Hero)`
     background-repeat: no-repeat;
     top: 0;
     right: 0;
+    ${props => media(props).lessThan("md")`
+      top: -65px;
+      right: -100px;
+      transform: scale(.5);
+    }`
   }
 `
 
