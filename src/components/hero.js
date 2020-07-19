@@ -2,6 +2,7 @@ import { Heading } from './../utils/components';
 import React from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components';
+
 const HeroWrapper = styled.section`
   display: flex;
   min-height: 60vh;

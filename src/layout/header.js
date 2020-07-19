@@ -28,8 +28,9 @@ const HeaderContainer = styled(Container)`
 
 const MainLink = styled(Link)`
   color: ${ props => props.theme.header.textColor};
-  font-size: 1.5rem;
-  font-weight: 200;
+  font-size: 2rem;
+  font-family: "${({ theme }) => theme.fontFamilies.text}";
+  font-weight: 300;
   text-decoration: none;
   ${props => media(props).greaterThan("md")`
     padding-left: 1rem;
@@ -41,11 +42,12 @@ const MainLink = styled(Link)`
 
 const HeaderLink = styled(Link)`
   color: ${ props => props.theme.header.textColor};
+  font-family: "${({ theme }) => theme.fontFamilies.text}";
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 1rem;
   border-color: transparent;
-  font-weight: 200;
+  font-weight: 300;
   transition: all 0.2s ease-in-out;
   position: relative;
   padding: .5rem;
