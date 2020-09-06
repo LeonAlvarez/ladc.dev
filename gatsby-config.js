@@ -12,7 +12,8 @@ module.exports = {
       Telegram: `leondesign`,
       Email: `leon@leon-design.es`,
       Linkedin: `leon-alvarez-del-canto`
-    }
+    },
+    authorBasedIn: `Malta`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
