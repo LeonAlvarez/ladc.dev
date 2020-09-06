@@ -24,8 +24,13 @@ const LayoutWrapper = styled.div`
 `;
 
 const MainContainer = styled.main`
-  overflow: hidden;
   margin-top: 4.5rem;
+  height: 100%;
+  min-height: calc(100vh - 12rem);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 
@@ -41,6 +46,7 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
   const menuItems = [
     { label: "Blog", url: '/blog' },
     { label: "About" },

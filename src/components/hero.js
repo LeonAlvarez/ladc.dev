@@ -11,6 +11,7 @@ const HeroWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 const Hero = ({ className, children }) => (
