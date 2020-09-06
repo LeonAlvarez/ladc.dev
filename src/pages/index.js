@@ -20,7 +20,7 @@ const HeroHeading = styled(Heading)`
   font-weight: 400;
   z-index: 1;
   padding: 0 .25rem;
-    margin: 0 -.25rem;
+  margin: 0 -.25rem;
   font-size: 4rem;
   background-image: linear-gradient(transparent calc(65% - .25rem), hsla(216, 80%, 41%, 1) .25rem);
   background-size: 100%;

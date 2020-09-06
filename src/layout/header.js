@@ -13,7 +13,7 @@ const HeaderWrapper = styled.header`
   top: 0;
   left: 0;
   right: 0; 
-  height: 70px;
+  height: 4.5rem;
   background-color: ${props => props.bgColor || props.theme.header.bgColor};
   box-shadow: ${props => (props.isScrolled ? '0px 0px 10px #4d4d4d' : 'none')};
 `;

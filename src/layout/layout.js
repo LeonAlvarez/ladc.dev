@@ -20,7 +20,13 @@ const LayoutWrapper = styled.div`
   min-height: 100vh;
   margin: 0px;
   transition: all 0.37s ease 0s;
-`
+`;
+
+const MainContainer = styled.main`
+  overflow: hidden;
+  margin-top: 4.5rem;
+`;
+
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
@@ -43,7 +49,7 @@ const Layout = ({ children }) => {
           menuItems={menuItems}
           headerLogoTitle={data.site.siteMetadata.description}
           headerLogo={data.site.siteMetadata.author} />
-        <main style={{ overflow: 'hidden' }}>{children}</main>
+        <MainContainer >{children}</MainContainer>
         <Footer />
       </LayoutWrapper>
     </ThemeProvider >
