@@ -14,9 +14,10 @@ import { ThemeContext } from '../utils/ThemeContext'
 import Header from "./header"
 import Footer from "./footer"
 
-import "./layout.css"
+import "./reset.css"
 
 const LayoutWrapper = styled.div`
+  background-color: ${props => props.bgColor || props.theme.lightBgColor};
   min-height: 100vh;
   margin: 0px;
   transition: all 0.37s ease 0s;
