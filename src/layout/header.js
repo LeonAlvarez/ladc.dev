@@ -90,10 +90,10 @@ const HeaderMenu = ({ menuItems }) => {
   return (
     <nav>
       <HeaderMenuList>
-        {menuItems.map((menuItem, i) => {
+        {menuItems.map(({ label, url }, i) => {
           return (
-            <HeaderLink key={i} to="#">
-              {menuItem}
+            <HeaderLink key={i} to={url || '/#'}>
+              {label}
             </HeaderLink>
           );
         })}

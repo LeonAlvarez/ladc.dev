@@ -40,7 +40,11 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  const menuItems = ["Blog", "About", "Contact"];
+  const menuItems = [
+    { label: "Blog", url: '/blog' },
+    { label: "About" },
+    { label: "Contact" }
+  ];
 
   return (
     <ThemeProvider theme={theme.currentTheme}>
