@@ -13,6 +13,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { ThemeContext } from '../utils/ThemeContext'
 import Header from "./header"
 import Footer from "./footer"
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 import "./reset.css"
 
@@ -36,16 +37,7 @@ const MainContainer = styled.main`
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
-  const data = useStaticQuery(graphql`
-    query LayoutQuery {
-      site {
-        siteMetadata {
-          author,
-          description
-        }
-      }
-    }
-  `)
+  const { author, description } = useSiteMetadata();
 
   const menuItems = [
     { label: "Blog", url: '/blog' },
@@ -58,8 +50,8 @@ const Layout = ({ children }) => {
       <LayoutWrapper>
         <Header
           menuItems={menuItems}
-          headerLogoTitle={data.site.siteMetadata.description}
-          headerLogo={data.site.siteMetadata.author} />
+          headerLogoTitle={description}
+          headerLogo={author} />
         <MainContainer >{children}</MainContainer>
         <Footer />
       </LayoutWrapper>

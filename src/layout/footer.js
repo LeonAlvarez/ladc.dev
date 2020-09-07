@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Github, Twitter, Telegram, Linkedin } from '@styled-icons/fa-brands'
 import { AlternateEmail } from '@styled-icons/material';
 import { Container, Button } from '../utils/components';
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 const FooterWrapper = styled.footer`
   color: hsla(208, 19%, 53%, 1);
@@ -43,23 +44,7 @@ const SocialLink = styled.a`
 `;
 
 const Footer = () => {
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      site {
-        siteMetadata {
-          social {
-            Github
-            Twitter
-            Telegram
-            Email
-            Linkedin
-          }
-        }
-      }
-    }
-  `);
-
-  const { social } = data.site.siteMetadata;
+  const { social } = useSiteMetadata();
 
   return (
     <FooterWrapper>

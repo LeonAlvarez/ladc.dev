@@ -7,6 +7,7 @@ import { Container, Button, Heading } from '../utils/components';
 import Layout from "../layout/layout"
 import SEO from "../components/seo"
 import media from "../utils/mediaQueries"
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 
 const BlogHeading = styled.div`
@@ -18,16 +19,20 @@ const BlogHeading = styled.div`
   align-items: center;
 `;
 
+const BlogTitle = styled(Heading)`
+  display:flex;
+  flex:1;
+`
+
 const DogNotDogImgWrapper = styled.div`
   position: relative;
   display: flex;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   margin-right: 1rem;
-  ${props => media(props).lessThan("md")`
-    width: 60px;
-    height: 60px;
-    margin-right: 1.5rem;
+  ${props => media(props).greaterThan("md")`
+    width: 80px;
+    height: 80px;
   `}
 `;
 
@@ -101,7 +106,8 @@ const PostList = ({ posts }) => {
 const BlogIndex = ({ data }) => {
   const [isZeusShown, setIsZeusShown] = useState(false);
 
-  const { authorFullName, authorBasedIn } = data.site.siteMetadata;
+  const { authorFullName, authorBasedIn } = useSiteMetadata();
+
   const posts = data.allMarkdownRemark.edges;
 
   const zeusSources = [
@@ -137,10 +143,10 @@ const BlogIndex = ({ data }) => {
               fixed={zeusSources}
             />
           </DogNotDogImgWrapper>
-          <Heading level={5} as={'h1'} style={{ display: 'flex', flex: 1 }}>
+          <BlogTitle level={5} as={'h1'}>
             Written by {authorFullName} who lives and works {authorBasedIn} building useful things.
             Mainly writes about JS, React, Laravel, Programming, and Software Engineering.
-          </Heading>
+          </BlogTitle>
         </BlogHeading>
         <PostList posts={posts} />
       </Container>
@@ -152,13 +158,6 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        authorFullName,
-        authorBasedIn,
-        title
-      }
-    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {

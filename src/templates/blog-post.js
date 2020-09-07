@@ -4,11 +4,11 @@ import { Link, graphql } from "gatsby"
 // import Bio from "../components/bio"
 import Layout from "../layout/layout"
 import SEO from "../components/seo"
-// import { rhythm, scale } from "../utils/typography"
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
-    const post = data.markdownRemark
-    const siteTitle = data.site.siteMetadata.title
+    const post = data.markdownRemark;
+    const { title: siteTitle } = useSiteMetadata();
     const { previous, next } = pageContext
 
     return (

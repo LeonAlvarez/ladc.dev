@@ -12,6 +12,7 @@ import WhoIm from "../components/whoIm"
 import Shape1 from "../../static/header-shape1.png"
 import Shape2 from "../../static/header-shape2.png"
 import { Description } from "@styled-icons/material";
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 const HeroHeading = styled(Heading)`
   position: relative;
@@ -138,19 +139,6 @@ const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
     query SocialQuery {
-      site {
-        siteMetadata {
-          author
-          description
-          social {
-            Github
-            Twitter
-            Telegram
-            Email
-            Linkedin
-          }
-        }
-      }
       us: file(relativePath: { eq: "us.jpeg" }) {
         childImageSharp {
           fixed(width: 180, height: 180) {
@@ -180,17 +168,13 @@ const IndexPage = () => {
         }
       }
     }
-  `)
+  `);
 
   const {
-    site: {
-      siteMetadata: {
-        social,
-        author,
-        description
-      }
-    }
-  } = data;
+    social,
+    author,
+    description
+  } = useSiteMetadata();
 
   const zeusSources = [
     data.zeusMobile.childImageSharp.fixed,
