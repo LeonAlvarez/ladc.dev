@@ -14,7 +14,11 @@ const headings = {
   4: {
     fontSize: '2rem',
     fontWeight: 600,
-  }
+  },
+  5: {
+    fontSize: '1.25rem',
+    fontWeight: 400,
+  },
 }
 
 const lightTheme = {
@@ -43,6 +47,11 @@ const darkTheme = {
     bgColor: '#00173a',
     textColor: 'hsl(216, 20%, 80%, 1)',
     accentColor: 'hsla(216, 80%, 41%, 1)'
+  },
+  postList: {
+    dateColor: '#00173a',
+    textColor: '#00173a',
+    titleColor: 'hsla(216, 80%, 41%, 1)'
   },
   textColor: '#00173a',
   lightTextColor: 'hsl(216, 20%, 80%, 1)',

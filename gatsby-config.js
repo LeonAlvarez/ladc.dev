@@ -5,6 +5,7 @@ module.exports = {
     title: `León Alvarez Del Canto | Fullstack Developer`,
     description: `León Alvarez Del Canto`,
     author: `León`,
+    authorFullName: `León Alvarez Del Canto`,
     siteUrl: `https://ladc.dev`,
     social: {
       Github: `LeonAlvarez`,

@@ -199,6 +199,7 @@ const IndexPage = () => {
       media: `(min-width: 769px)`,
     },
   ];
+
   const usSources = [
     data.usMobile.childImageSharp.fixed,
     {

@@ -109,7 +109,7 @@ const WhoIm = ({ social }) => {
       <WhoImContainer>
         <TextWrapper>
           <HeadingQuestion level={4}>Now you may be wondering...</HeadingQuestion>
-          <WhoImTitle level={3}>Who Are You?</WhoImTitle>
+          <WhoImTitle level={3}>Who am I?</WhoImTitle>
           <Button primary rounded>
             About me
           </Button>
