@@ -26,7 +26,7 @@ const HeaderContainer = styled(Container)`
 `;
 
 const MainLink = styled(Link)`
-  color: ${ props => props.theme.header.textColor};
+  color: ${props => props.theme.header.textColor};
   font-size: 2rem;
   font-family: "${({ theme }) => theme.fontFamilies.text}";
   font-weight: 300;
@@ -35,12 +35,12 @@ const MainLink = styled(Link)`
     padding-left: 1rem;
   `};
   &:hover {
-    -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
+    -webkit-text-stroke: 1px ${props => props.theme.header.textColor};
   }
 `;
 
 const HeaderLink = styled(Link)`
-  color: ${ props => props.theme.header.textColor};
+  color: ${props => props.theme.header.textColor};
   font-family: "${({ theme }) => theme.fontFamilies.text}";
   text-decoration: none;
   text-transform: uppercase;
@@ -50,6 +50,7 @@ const HeaderLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   position: relative;
   padding: .5rem;
+  cursor: pointer;
   ${props => media(props).greaterThan("md")`
     margin: 0 .5rem;
   `};
@@ -72,8 +73,7 @@ const HeaderLink = styled(Link)`
     right: calc(50% - 0.5rem);
   }
   &:hover {
-    -webkit-text-stroke: 1px ${ props => props.theme.header.textColor};
-    cursor: pointer;
+    -webkit-text-stroke: 1px ${props => props.theme.header.textColor};
       &:before,
       &:after {
       width: 50%;
